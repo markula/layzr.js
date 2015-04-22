@@ -64,8 +64,9 @@
         offset.top  += element.offsetTop;
       }
       if(!isNaN(element.offsetLeft)) {
-        offset.left = element.offsetLeft;
+        offset.left += element.offsetLeft - element.scrollLeft;
       }
+      // offset._left = element.offsetLeft;
     } while (element = element.offsetParent);
 
     return offset;
