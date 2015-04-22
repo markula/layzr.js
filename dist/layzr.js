@@ -100,10 +100,10 @@
 
     // get viewport width
     var viewPortWidth = window.innerWidth;
-    var elementLeft = offset.left;
+    var elementLeft = _offset.left;
 
     // get node top and bottom offset
-    var elementTop = offset.top;
+    var elementTop = _offset.top;
     var elementBottom = elementTop + node.offsetHeight;
 
     // calculate threshold, convert percentage to pixel value
