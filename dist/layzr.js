@@ -54,15 +54,21 @@
   // borrowed from: http://stackoverflow.com/questions/5598743/finding-elements-position-relative-to-the-document
 
   Layzr.prototype._getOffset = function(element) {
-    var offsetTop  = 0;
+    var offset = {
+      top: 0,
+      left: 0
+    };
 
     do {
       if(!isNaN(element.offsetTop)) {
-        offsetTop  += element.offsetTop;
+        offset.top  += element.offsetTop;
+      }
+      if(!isNaN(element.offsetLeft)) {
+        offset.left = element.offsetLeft;
       }
     } while (element = element.offsetParent);
 
-    return offsetTop;
+    return offset;
   }
 
   // LAYZR METHODS
@@ -85,19 +91,26 @@
   }
 
   Layzr.prototype._inViewport = function(node) {
+    //get offset
+    var _offset = this._getOffset(node);
+
     // get viewport top and bottom offset
     var viewportTop = this._lastScroll;
     var viewportBottom = viewportTop + window.innerHeight;
 
+    // get viewport width
+    var viewPortWidth = window.innerWidth;
+    var elementLeft = offset.left;
+
     // get node top and bottom offset
-    var elementTop = this._getOffset(node);
+    var elementTop = offset.top;
     var elementBottom = elementTop + node.offsetHeight;
 
     // calculate threshold, convert percentage to pixel value
     var threshold = (this._optionsThreshold / 100) * window.innerHeight;
 
     // return if element in viewport
-    return elementBottom >= viewportTop - threshold && elementBottom <= viewportBottom + threshold;
+    return elementBottom >= viewportTop - threshold && elementBottom <= viewportBottom + threshold && elementLeft < viewPortWidth && elementLeft > 0;
   }
 
   Layzr.prototype._reveal = function(node) {
