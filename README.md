@@ -1,6 +1,6 @@
 # Layzr.js
 
-A small, fast, modern, and dependency-free library for lazy loading.
+A small, fast, modern, and dependency-free library for lazy loading. This fork is to add in horizontal scrolling for lazy loading.
 
 * [Project/Demo Page](http://callmecavs.github.io/layzr.js/)
 * [NPM Page](https://www.npmjs.com/package/layzr.js)
